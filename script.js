@@ -1,48 +1,79 @@
 var word="";
-var letters =[];
-var guesses=0;
-var guessedLetters=[];
-//user chooses a number that corrosponds to a letter to guess
-var wordNum = 0;
-var difficulty=0;
+var guessedLetters=[""];
+var easyWords=["hi","cow", "bat", "car", "man"];
+var medWords=["school", "bagpipe", "person", "whiteboard"];
+var hardWords=["otorhinolaryngological", "immunoelectrophoretically", "psychophysicotherapeutics", "spectrophotofluorometrically"];
+var possibleInputs=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-//runs input and output on click of button
-function onButton(){
-    input();
-    output();
-}
 
-//pulls from html
-function input(){
-    difficulty=parseInt(document.getElementById(difficulty));
-    console.log(difficulty);
-    wordNum=getWordNum(difficulty);
-    word= words(wordNum);
 
-}
 
-//generates a number from easy, med, or hard to corospond to a word
-function getWordNum (difficulty){
-    if (difficulty==1){
-         wordNum= randomWithRange(0, 3);
-        {
+function startGame(){
+
+   //resests everything
+    document.getElementById("showGuessedLetters").innerHTML = ("");
+    document.getElementById("guessesLeft").innerHTML = ("");
+    guessedLetters=[""];
+
+    //picks word
+    var difficulty=document.getElementById("difficulty").value;
+    if (difficulty==1) {
+        word = easyWords[Math.floor(Math.random() * easyWords.length)];
     }
-    if (difficulty==2){
-        wordNum= randomWithRange(3, 6);
+
+        if (difficulty==2){
+            word = medWords[Math.floor(Math.random() * medWords.length)];
+        }
+        if (difficulty==3){
+            word = hardWords[Math.floor(Math.random() * hardWords.length)];
+        }
+
+    console.log (word);
+    printWord();
+
+
+
+
+}
+
+function handleGuess(){
+    document.getElementById("error").innerHTML=("");
+
+    var guessFromPage=(document.getElementById("guess").value);
+    console.log(guessFromPage);
+    console.log(guessedLetters);
+    var guessesLeft=(9-guessedLetters.length);
+    //have guesses left
+    if(guessesLeft>0){
+       //input is ok
+        if(possibleInputs.indexOf(guessFromPage)>-1 && guessedLetters.indexOf(guessFromPage)<0){
+            guessedLetters.push(guessFromPage);
+            document.getElementById("guess").value= "";
+            document.getElementById("showGuessedLetters").innerHTML = (guessedLetters);
+            document.getElementById("guessesLeft").innerHTML = (guessesLeft);
+            printWord();
+        }else{
+            //input not ok
+            document.getElementById("error").innerHTML=("Either you already guessed that letter or your input was not a single lower case letter. Try again");
+        }
+
+    }else{
+        //mo guesses left
+        document.getElementById("GameOver").innerHTML=("GameOver");
     }
-    if (difficulty==3){
-        wordNum= randomWithRange(6, 9);
+
+}
+
+function printWord(){
+    var r = "";
+    for (var i=0; i<word.length; i++){
+        if (guessedLetters.indexOf(word[i])>-1){
+          r+=word[i];
+        }else{
+            r+="_  ";
+        }
     }
-    console.log(wordNum)
-}
+    document.getElementById("print").innerHTML = r;
 
 
-function words (wordNum){
-    word=index.wordNum["bat", "cow", "and"];
-    return word;
-}
-
-function output(){
-    document.getElementById("word").innerHTML=words(wordNum);
-}
 }

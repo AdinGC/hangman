@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
+    <link rel="stylesheet" href="style.css"/>
     <script src="Script.js"></script>
     <meta charset="UTF-8">
     <title>Hangman</title>
 </head>
 <body>
 
- <select id="difficulty">
+ Select Difficulty: <select id="difficulty">
     <option value="1">easy</option>
     <option value="2">medium</option>
     <option value="3">hard</option>
  </select>
+<br>
+ <button id="startGame" onclick="startGame()">New Game</button>
 
- <button id="MyButton" onclick="onButton()">Go!</button>
- <div id="word"></div>
+<br>
+
+ <!--gets letter guesses-->
+ <input type="text" id="guess" value="Your Guess" size="15">
 
 
 
+
+
+ <button id="guessLetter" onclick="handleGuess()">Guess Letter</button>
+ <div id="print"></div>
+ <div id="GameOver"></div>
+ <div id="error"></div>
+
+
+ Guessed Letters: <div id="showGuessedLetters"></div>
+
+ Guesses Left: <div id="guessesLeft"></div>
 
 </body>
 </html>

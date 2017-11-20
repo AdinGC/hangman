@@ -1,0 +1,15 @@
+/* style all elements in the <body> */
+body {
+    background-image: url(https://s-media-cache-ak0.pinimg.com/originals/58/8c/4b/588c4ba75cbd6dd9fe3c5bfafaaccdea.jpg);
+    background-repeat: repeat;
+    text-align: center;
+    color: white;
+    vertical-align: top;
+    font-size: larger;
+
+}
+
+#startGame{
+    button-size: 100px;
+
+}
