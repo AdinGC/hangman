@@ -7,13 +7,16 @@ var possibleInputs=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", 
 
 
 
-
 function startGame(){
 
    //resests everything
     document.getElementById("showGuessedLetters").innerHTML = ("");
     document.getElementById("guessesLeft").innerHTML = ("");
+    document.getElementById("win").innerHTML = ("");
+    document.getElementById("GameOver").innerHTML = ("");
+
     guessedLetters=[""];
+
 
     //picks word
     var difficulty=document.getElementById("difficulty").value;
@@ -37,14 +40,15 @@ function startGame(){
 }
 
 function handleGuess(){
+
     document.getElementById("error").innerHTML=("");
 
     var guessFromPage=(document.getElementById("guess").value);
     console.log(guessFromPage);
     console.log(guessedLetters);
-    var guessesLeft=(9-guessedLetters.length);
+    var guessesLeft=(13-guessedLetters.length);
     //have guesses left
-    if(guessesLeft>0){
+    if(guessesLeft>=0){
        //input is ok
         if(possibleInputs.indexOf(guessFromPage)>-1 && guessedLetters.indexOf(guessFromPage)<0){
             guessedLetters.push(guessFromPage);
@@ -52,14 +56,19 @@ function handleGuess(){
             document.getElementById("showGuessedLetters").innerHTML = (guessedLetters);
             document.getElementById("guessesLeft").innerHTML = (guessesLeft);
             printWord();
+            var returnValue = printWord();
+            console.log(returnValue);
+            if (returnValue.indexOf("_")==-1){
+                document.getElementById("win").innerHTML=("Congradulations, you win! Play Again?")
+            }
         }else{
             //input not ok
             document.getElementById("error").innerHTML=("Either you already guessed that letter or your input was not a single lower case letter. Try again");
         }
 
     }else{
-        //mo guesses left
-        document.getElementById("GameOver").innerHTML=("GameOver");
+        //no guesses left
+        document.getElementById("GameOver").innerHTML=("You lose! GameOver. Hit 'new game' to try again.");
     }
 
 }
@@ -74,6 +83,7 @@ function printWord(){
         }
     }
     document.getElementById("print").innerHTML = r;
+    return r;
 
 
 }

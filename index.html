@@ -8,19 +8,21 @@
 </head>
 <body>
 
- Select Difficulty: <select id="difficulty">
+ <span> Hangman</span>
+
+ <br>
+Select Difficulty: <select id="difficulty">
     <option value="1">easy</option>
     <option value="2">medium</option>
     <option value="3">hard</option>
  </select>
 <br>
- <button id="startGame" onclick="startGame()">New Game</button>
+Start New Game: <button id="startGame" onclick="startGame()">New Game</button>
 
 <br>
 
  <!--gets letter guesses-->
- <input type="text" id="guess" value="Your Guess" size="15">
-
+Guess Letters: <input type="text" id="guess" value="Your Guess" size="15">
 
 
 
@@ -29,6 +31,8 @@
  <div id="print"></div>
  <div id="GameOver"></div>
  <div id="error"></div>
+ <div id="win"></div>
+
 
 
  Guessed Letters: <div id="showGuessedLetters"></div>

@@ -6,10 +6,27 @@ body {
     color: white;
     vertical-align: top;
     font-size: larger;
+    font-family: "Century" ;
 
 }
 
 #startGame{
-    button-size: 100px;
+    button-size: 95px;
 
+}
+
+div {
+    margin-bottom: 110px;
+}
+
+#difficulty{
+    margin-top: 70px;
+}
+
+span{
+    font-size: 60px;
+}
+
+#guess{
+    margin-top: 100px;
 }
